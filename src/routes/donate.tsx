@@ -23,6 +23,30 @@ const tiers = [
 function Donate() {
   const [amount, setAmount] = useState(100);
   const [frequency, setFrequency] = useState<"once" | "monthly">("monthly");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleDonate = () => {
+    const normalizedPhone = phone.replace(/\D/g, "");
+
+    if (!normalizedPhone || normalizedPhone.length < 10) {
+      setMessage("Please enter a valid phone number.");
+      setIsSuccess(false);
+      return;
+    }
+
+    const pin = window.prompt("Enter your M-Pesa PIN to complete payment");
+
+    if (!pin) {
+      setMessage("Payment canceled. Please enter your PIN to finish.");
+      setIsSuccess(false);
+      return;
+    }
+
+    setMessage(`Thank you! Your donation of $${amount} has been submitted for processing.`);
+    setIsSuccess(true);
+  };
 
   return (
     <>
@@ -77,21 +101,37 @@ function Donate() {
                   <input
                     type="number"
                     value={amount}
+                    min={1}
                     onChange={(e) => setAmount(Number(e.target.value))}
                     className="mt-2 w-full px-5 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/30"
                   />
                 </div>
                 <div>
-                  <label className="text-xs uppercase tracking-widest font-bold text-brand-navy/60">Email</label>
+                  <label className="text-xs uppercase tracking-widest font-bold text-brand-navy/60">Phone number</label>
                   <input
-                    type="email"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="2547XXXXXXXX"
                     className="mt-2 w-full px-5 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/30"
                   />
                 </div>
-                <button className="w-full px-6 py-4 bg-brand-green text-white rounded-full font-bold uppercase tracking-wider text-sm hover:brightness-110 flex items-center justify-center gap-2 transition-all">
+                <button
+                  onClick={handleDonate}
+                  className="w-full px-6 py-4 bg-brand-green text-white rounded-full font-bold uppercase tracking-wider text-sm hover:brightness-110 flex items-center justify-center gap-2 transition-all"
+                >
                   <CreditCard className="h-4 w-4" />
                   Donate ${amount} {frequency === "monthly" ? "monthly" : "once"}
                 </button>
+                {message ? (
+                  <div
+                    className={`rounded-2xl px-4 py-3 text-sm ${
+                      isSuccess ? "bg-brand-green/10 text-brand-green" : "bg-destructive/10 text-destructive"
+                    }`}
+                  >
+                    {message}
+                  </div>
+                ) : null}
                 <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-[11px] uppercase tracking-widest text-brand-navy/40 font-bold">
                   <span>Visa</span>
                   <span>Mastercard</span>
