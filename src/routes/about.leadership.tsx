@@ -16,10 +16,10 @@ export const Route = createFileRoute("/about/leadership")({
 
 const leaders = [
   { name: "Dr. Amina Okoro", role: "Executive Director", bio: "Former UNDP Africa youth advisor. PhD, London School of Economics.", image: portraitFemale },
-  { name: "James Mwangi", role: "Board Chair", bio: "20 years leading development finance across East and West Africa.", image: portraitMale },
+  { name: "James Mwangi", role: "Board Chair", bio: "Former Director of Development Finance at Equity Group. Experienced in mobilizing capital for youth ventures across Africa.", image: portraitMale },
   { name: "Grace Uwimana", role: "Director of Programs", bio: "Architect of the Green Venture Fund. Rhodes Scholar, Oxford.", image: portraitFemale },
   { name: "Samuel Kimani", role: "Chief Financial Officer", bio: "CPA. Previously with KPMG East Africa's non-profit practice.", image: portraitMale },
-  { name: "Nia Adeyemi", role: "Regional Director, West Africa", bio: "Founding member of the Lagos Youth Innovation Hub.", image: portraitFemale },
+  { name: "Nia Adeyemi", role: "Regional Director, West Africa", bio: "An early collaborator on the network’s 2026 West Africa outreach in Lagos.", image: portraitFemale },
   { name: "Daniel Owusu", role: "Director of Partnerships", bio: "Built partnerships with UNICEF, USAID, and Mastercard Foundation.", image: portraitMale },
 ];
 

@@ -18,12 +18,12 @@ export const Route = createFileRoute("/news")({
 });
 
 const articles = [
-  { image: storyGraduation, tag: "Press Release", date: "Feb 12, 2026", title: "INUA VIJANA announces $12M expansion into West Africa" },
-  { image: storyWorkshop, tag: "Impact", date: "Feb 04, 2026", title: "Community Health Corps reduces child mortality by 34% in pilot" },
-  { image: eventConference, tag: "Event", date: "Jan 22, 2026", title: "4,000 delegates convene at Africa Youth Assembly 2025" },
-  { image: programTech, tag: "Partnership", date: "Jan 10, 2026", title: "New partnership with Mastercard Foundation for Digital Excellence Hubs" },
-  { image: programLeadership, tag: "Announcement", date: "Dec 18, 2025", title: "Civic Leadership Academy welcomes its 2026 fellows" },
-  { image: programClimate, tag: "Grants", date: "Nov 30, 2025", title: "Green Venture Fund deploys $2.1M to Cohort 4 startups" },
+  { image: storyGraduation, tag: "Press Release", date: "Oct 15, 2026", title: "INUA VIJANA announces $12M expansion into West Africa" },
+  { image: storyWorkshop, tag: "Impact", date: "Sep 28, 2026", title: "Community Health Corps reaches 50,000 beneficiaries in initial rollout" },
+  { image: eventConference, tag: "Event", date: "Sep 10, 2026", title: "4,000 delegates convene at Africa Youth Assembly 2026" },
+  { image: programTech, tag: "Partnership", date: "Aug 22, 2026", title: "Partnership with Mastercard Foundation for Digital Excellence Hubs" },
+  { image: programLeadership, tag: "Announcement", date: "Jul 30, 2026", title: "Civic Leadership Academy welcomes inaugural fellows" },
+  { image: programClimate, tag: "Grants", date: "Jul 15, 2026", title: "Green Venture Fund deploys $2.1M to its first cohort startups" },
 ];
 
 function News() {

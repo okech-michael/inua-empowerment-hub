@@ -7,9 +7,12 @@ export function SiteFooter() {
       <div className="container-page">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
           <div className="col-span-2">
-            <Link to="/" className="text-xl font-extrabold tracking-tight flex items-center gap-1.5 mb-8">
-              <span className="text-brand-green">INUA</span>
-              <span className="text-brand-navy/70">VIJANA</span>
+            <Link to="/" className="text-xl font-extrabold tracking-tight flex items-center gap-3 mb-8">
+              <img src="/favicon.jpg" alt="INUA VIJANA logo" className="h-9 w-9 rounded-full object-cover" />
+              <span className="flex items-center gap-1.5">
+                <span className="text-brand-green">INUA</span>
+                <span className="text-brand-navy/70">VIJANA</span>
+              </span>
             </Link>
             <p className="text-brand-navy/60 text-sm max-w-sm leading-relaxed mb-8">
               A youth empowerment network dedicated to unlocking the potential of

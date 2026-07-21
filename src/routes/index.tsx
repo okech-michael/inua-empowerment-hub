@@ -97,7 +97,7 @@ function Home() {
               Leadership <br />
               <span className="text-brand-yellow">Redefined.</span>
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-white/80 leading-relaxed max-w-xl text-pretty">
+            <p className="mt-8 text-lg md:text-xl text-white/90 leading-relaxed max-w-xl text-pretty">
               We connect young leaders with the resources, mentorship, and global
               networks required to drive sustainable development across the continent.
             </p>
@@ -128,7 +128,7 @@ function Home() {
                 <div className="text-5xl md:text-6xl font-extrabold text-brand-green tracking-tight">
                   {s.value}
                 </div>
-                <div className="text-[11px] uppercase tracking-widest text-brand-navy/50 font-bold mt-2">
+                <div className="text-[11px] uppercase tracking-widest text-brand-navy/70 font-bold mt-2">
                   {s.label}
                 </div>
               </div>
@@ -147,7 +147,7 @@ function Home() {
             <h2 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-balance">
               Bridging the gap between potential and opportunity.
             </h2>
-            <p className="mt-8 text-lg text-brand-navy/60 leading-relaxed">
+            <p className="mt-8 text-lg text-brand-navy/80 leading-relaxed">
               INUA VIJANA is more than an organization; it is a movement dedicated
               to unlocking the inherent creativity and leadership of African youth.
               Through systematic intervention and community-led projects, we
@@ -157,7 +157,7 @@ function Home() {
               to="/about"
               className="mt-8 inline-flex items-center gap-2 font-bold text-brand-green border-b-2 border-brand-green/20 hover:border-brand-green pb-1 transition-colors"
             >
-              Learn more about our history
+              Learn more about our launch story
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -249,7 +249,7 @@ function Home() {
                     Featured Story
                   </span>
                   <h3 className="text-3xl md:text-4xl font-extrabold mt-4 mb-4 max-w-2xl leading-tight">
-                    How the Class of 2024 built Kenya's fastest-growing fintech
+                    How the Class of 2026 built Kenya's fastest-growing fintech
                     for the unbanked.
                   </h3>
                   <Link
@@ -289,7 +289,7 @@ function Home() {
                   />
                 </div>
                 <h4 className="text-xl font-bold group-hover:text-brand-green transition-colors">
-                  Africa Youth Assembly 2024
+                  Africa Youth Assembly 2026
                 </h4>
                 <p className="mt-2 text-sm text-brand-navy/60">
                   4,000 delegates. 12 countries. One vision for the continent's
@@ -441,7 +441,7 @@ function Home() {
                   </p>
                   <div className="font-extrabold">Amina Okoro</div>
                   <div className="text-xs text-white/50 uppercase tracking-widest font-semibold">
-                    Founder, AgriConnect · 2023 Fellow
+                    Founder, AgriConnect · 2026 Fellow
                   </div>
                 </div>
               </div>

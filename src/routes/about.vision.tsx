@@ -42,8 +42,7 @@ function Vision() {
         <div className="container-page max-w-4xl">
           <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-brand-yellow">Our commitment</span>
           <p className="mt-6 text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-balance">
-            "We measure success not by the number of workshops we run, but by the
-            careers built, the businesses launched, and the communities changed."
+            "We measure success not by the number of workshops we run, but by the careers built, the businesses launched, and the communities changed."
           </p>
           <p className="mt-8 text-white/60 uppercase text-xs tracking-widest font-bold">— Our 2030 Strategic Plan</p>
         </div>

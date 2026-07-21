@@ -32,7 +32,7 @@ function Impact() {
             <div className="absolute inset-x-0 bottom-0 p-10 md:p-16 bg-gradient-to-t from-brand-navy via-brand-navy/70 to-transparent text-white">
               <span className="text-brand-yellow font-extrabold uppercase text-[11px] tracking-[0.2em]">Featured</span>
               <h3 className="mt-4 text-3xl md:text-5xl font-extrabold max-w-3xl leading-[1.1]">
-                From village classroom to Silicon Valley — the class of 2024's improbable journey.
+                From village classroom to Silicon Valley — the class of 2026's improbable journey.
               </h3>
             </div>
           </Link>
@@ -44,7 +44,7 @@ function Impact() {
               { image: storyWorkshop, tag: "Civic", title: "The workshop that turned 500 first-time voters into local leaders." },
               { image: eventConference, tag: "Innovation", title: "Inside the Africa Youth Assembly: 4,000 delegates, one vision." },
               { image: portraitFemale, tag: "Health", title: "Community health corps reduces child mortality by 34% in Tanzania." },
-              { image: storyGraduation, tag: "Education", title: "First-generation scholars: the graduates of 2024, in their own words." },
+              { image: storyGraduation, tag: "Education", title: "First-generation scholars: the graduates of 2026, in their own words." },
             ].map((s, i) => (
               <Link key={i} to="/impact" className="group">
                 <div className="overflow-hidden rounded-2xl aspect-[4/3] mb-6">

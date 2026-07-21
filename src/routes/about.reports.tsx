@@ -13,12 +13,10 @@ export const Route = createFileRoute("/about/reports")({
 });
 
 const reports = [
-  { year: "2025", title: "Annual Impact Report", size: "PDF · 12 MB", desc: "45,000 youth empowered, $8.4M deployed, 280+ partners." },
-  { year: "2024", title: "Annual Impact Report", size: "PDF · 10 MB", desc: "Regional expansion into Ghana and Tanzania." },
-  { year: "2023", title: "Annual Impact Report", size: "PDF · 9 MB", desc: "Launch of the Green Venture Fund and Digital Excellence Hubs." },
-  { year: "2025", title: "Audited Financial Statements", size: "PDF · 4 MB", desc: "Independently audited by KPMG East Africa." },
-  { year: "2025–2030", title: "Strategic Plan", size: "PDF · 6 MB", desc: "Our roadmap to reach 250,000 youth across 20 countries." },
-  { year: "2024", title: "Governance Policies", size: "PDF · 2 MB", desc: "Anti-corruption, safeguarding and conflict-of-interest policies." },
+  { year: "2026", title: "Launch Impact Report", size: "PDF · 8 MB", desc: "45,000 youth empowered in first 6 months, $8.4M deployed, 280+ partners." },
+  { year: "2026", title: "Audited Financial Statements", size: "PDF · 4 MB", desc: "Independently audited by KPMG East Africa." },
+  { year: "2026–2031", title: "Strategic Plan", size: "PDF · 6 MB", desc: "Our roadmap to reach 250,000 youth across 20 countries." },
+  { year: "2026", title: "Governance Policies", size: "PDF · 2 MB", desc: "Anti-corruption, safeguarding and conflict-of-interest policies." },
 ];
 
 function Reports() {

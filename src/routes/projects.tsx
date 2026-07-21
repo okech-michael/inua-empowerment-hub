@@ -24,7 +24,7 @@ const projects = [
   { title: "Rift Valley Digital Bootcamp", country: "Kenya", status: "Ongoing", image: programTech, budget: "$420k" },
   { title: "Kigali Solar Startups Cohort", country: "Rwanda", status: "Ongoing", image: programClimate, budget: "$1.2M" },
   { title: "Kampala Founders Sprint", country: "Uganda", status: "Ongoing", image: programEntrepreneur, budget: "$680k" },
-  { title: "Youth Assembly 2024", country: "Kenya", status: "Completed", image: programLeadership, budget: "$210k" },
+  { title: "Youth Assembly 2026", country: "Kenya", status: "Completed", image: programLeadership, budget: "$210k" },
   { title: "Community Health Corps Pilot", country: "Tanzania", status: "Completed", image: programHealth, budget: "$540k" },
   { title: "Girls in STEM Initiative", country: "Ghana", status: "Upcoming", image: programEducation, budget: "$300k" },
 ];

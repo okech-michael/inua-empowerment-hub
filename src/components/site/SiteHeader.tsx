@@ -9,7 +9,7 @@ const menus: MegaMenu[] = [
   {
     label: "About Us",
     items: [
-      { label: "About INUA VIJANA", to: "/about", description: "Who we are and our history" },
+      { label: "About INUA VIJANA", to: "/about", description: "Who we are and our 2026 launch story" },
       { label: "Vision, Mission & Values", to: "/about/vision", description: "What guides our work" },
       { label: "Leadership & Governance", to: "/about/leadership", description: "The people leading the network" },
       { label: "Annual Reports", to: "/about/reports", description: "Financials and impact reports" },
@@ -65,66 +65,67 @@ export function SiteHeader() {
       onMouseLeave={() => setOpen(null)}
     >
       <div className="container-page h-20 flex items-center justify-between">
-        <div className="flex items-center gap-10">
-          <Link to="/" className="text-xl font-extrabold tracking-tight flex items-center gap-1.5">
-            <span className="text-brand-green">INUA</span>
-            <span className="text-brand-navy/70">VIJANA</span>
+          <Link to="/" className="text-xl font-extrabold tracking-tight flex items-center gap-3">
+            <img src="/favicon.jpg" alt="INUA VIJANA logo" className="h-9 w-9 rounded-full object-cover" />
+            <span className="flex items-center gap-1.5">
+              <span className="text-brand-green">INUA</span>
+              <span className="text-brand-navy/70">VIJANA</span>
+            </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1">
-            {menus.map((menu) => (
-              <div
-                key={menu.label}
-                className="relative"
-                onMouseEnter={() => setOpen(menu.label)}
+          <div className="hidden lg:flex items-center gap-2 ml-auto">
+            <nav className="flex items-center gap-2">
+              <Link
+                to="/"
+                className="px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
               >
-                <button
-                  className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
-                  aria-expanded={open === menu.label}
+                Home
+              </Link>
+              {menus.map((menu) => (
+                <div
+                  key={menu.label}
+                  className="relative"
+                  onMouseEnter={() => setOpen(menu.label)}
                 >
-                  {menu.label}
-                  <ChevronDown className="h-3 w-3" />
-                </button>
-              </div>
-            ))}
-            <Link
-              to="/partners"
-              className="px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
-            >
-              Partners
-            </Link>
-            <Link
-              to="/contact"
-              className="px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
-        </div>
+                  <button
+                    className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
+                    aria-expanded={open === menu.label}
+                  >
+                    {menu.label}
+                    <ChevronDown className="h-3 w-3" />
+                  </button>
+                </div>
+              ))}
+              <Link
+                to="/partners"
+                className="px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
+              >
+                Partners
+              </Link>
+              <Link
+                to="/contact"
+                className="px-3 py-2 text-[13px] font-semibold uppercase tracking-widest text-brand-navy/70 hover:text-brand-green transition-colors"
+              >
+                Contact
+              </Link>
+            </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
-          <Link
-            to="/join"
-            className="px-5 py-2.5 text-[13px] font-bold uppercase tracking-wider text-brand-navy hover:bg-brand-navy/5 rounded-full transition-all"
-          >
-            Join the Network
-          </Link>
-          <Link
-            to="/donate"
-            className="px-6 py-2.5 bg-brand-green text-white text-[13px] font-bold uppercase tracking-wider rounded-full shadow-lg shadow-brand-green/20 hover:brightness-110 hover:-translate-y-0.5 transition-all"
-          >
-            Donate
-          </Link>
-        </div>
+            <Link
+              to="/donate"
+              className="px-6 py-2.5 bg-brand-green text-white text-[13px] font-bold uppercase tracking-wider rounded-full shadow-lg shadow-brand-green/20 hover:brightness-110 hover:-translate-y-0.5 transition-all"
+            >
+              Donate
+            </Link>
+          </div>
 
-        <button
-          className="lg:hidden p-2 -mr-2"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <button
+            className="lg:hidden p-2 -mr-2"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
       </div>
 
       {/* Mega menu panel */}
@@ -163,6 +164,13 @@ export function SiteHeader() {
       {mobileOpen && (
         <div className="lg:hidden border-t border-brand-navy/5 bg-white">
           <div className="container-page py-6 space-y-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <Link
+              to="/"
+              className="block text-base font-semibold text-brand-navy hover:text-brand-green"
+              onClick={() => setMobileOpen(false)}
+            >
+              Home
+            </Link>
             {menus.map((menu) => (
               <div key={menu.label}>
                 <div className="text-[11px] font-bold uppercase tracking-widest text-brand-navy/40 mb-3">

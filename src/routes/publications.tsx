@@ -13,12 +13,12 @@ export const Route = createFileRoute("/publications")({
 });
 
 const pubs = [
-  { type: "Research", year: "2025", title: "The State of Youth Employment in East Africa" },
-  { type: "Policy Brief", year: "2025", title: "Financing Youth-led Climate Innovation" },
-  { type: "Toolkit", year: "2024", title: "Community Mentorship Playbook" },
-  { type: "Research", year: "2024", title: "Digital Skills Gap Report: 12 Countries" },
-  { type: "Policy Brief", year: "2024", title: "Civic Engagement and First-time Voters" },
-  { type: "Toolkit", year: "2023", title: "Founder's Guide to Fundraising in Africa" },
+  { type: "Research", year: "2026", title: "The State of Youth Employment in East Africa" },
+  { type: "Policy Brief", year: "2026", title: "Financing Youth-led Climate Innovation" },
+  { type: "Toolkit", year: "2026", title: "Community Mentorship Playbook" },
+  { type: "Research", year: "2026", title: "Digital Skills Gap Report: 12 Countries" },
+  { type: "Policy Brief", year: "2026", title: "Civic Engagement and First-time Voters" },
+  { type: "Toolkit", year: "2026", title: "Founder's Guide to Fundraising in Africa" },
 ];
 
 function Publications() {

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import storyGraduation from "@/assets/story-graduation.jpg";
 
@@ -6,18 +6,18 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About Us — INUA VIJANA" },
-      { name: "description", content: "Who we are, our history and what makes INUA VIJANA different." },
+      { name: "description", content: "Who we are and what makes INUA VIJANA different." },
     ],
   }),
   component: About,
 });
 
 const timeline = [
-  { year: "2014", title: "Founded in Nairobi", desc: "A collective of ten young graduates commits to peer-to-peer mentorship." },
-  { year: "2017", title: "First national programme", desc: "Digital literacy training reaches 5,000 students across Kenya." },
-  { year: "2019", title: "Regional expansion", desc: "Offices open in Kampala and Kigali; partnerships with UNICEF and USAID." },
-  { year: "2022", title: "Green Venture Fund launched", desc: "$4M seed capital deployed to 120 youth-led climate startups." },
-  { year: "2026", title: "Continental network", desc: "45,000+ youth empowered across 12 African countries." },
+  { year: "June 2026", title: "INUA VIJANA Network Launched", desc: "A pan-African network dedicated to empowering youth across 12 countries." },
+  { year: "Jul 2026", title: "First Digital Excellence Hubs", desc: "Digital literacy training reaches 5,000 students across Kenya." },
+  { year: "Aug 2026", title: "Regional offices launched", desc: "Operations begin in Kampala, Kigali, Accra and Dar es Salaam." },
+  { year: "Sep 2026", title: "Green Venture Fund launched", desc: "Initial capital deployed to 40 youth-led climate startups." },
+  { year: "Oct 2026", title: "Continental partnerships", desc: "Strategic partnerships signed with UNICEF, USAID and Mastercard Foundation." },
 ];
 
 const values = [
@@ -33,7 +33,7 @@ function About() {
       <PageHero
         eyebrow="About Us"
         title="A network built by youth, for youth."
-        description="Since 2014, INUA VIJANA has grown from a small collective of ten graduates in Nairobi into a Pan-African network reaching 12 countries. Our story is one of ambition, discipline and community."
+        description="Launched in June 2026, INUA VIJANA is a Pan-African network dedicated to empowering youth across 12 countries. Our story is one of rapid momentum, ambition, and community impact."
       />
 
       <section className="py-24">
@@ -44,16 +44,7 @@ function About() {
           <div className="lg:col-span-6">
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Who we are</h2>
             <p className="mt-6 text-lg text-brand-navy/60 leading-relaxed">
-              INUA VIJANA (Swahili for "lift up the youth") is an independent
-              non-profit registered in Kenya, with regional offices in Uganda,
-              Rwanda, Tanzania and Ghana. We combine training, seed capital,
-              mentorship and advocacy to remove the barriers young Africans face
-              on the path to meaningful work and civic leadership.
-            </p>
-            <p className="mt-4 text-lg text-brand-navy/60 leading-relaxed">
-              Our work is funded by a mix of institutional partners, corporate
-              sponsors and individual donors. Every dollar is tracked and reported
-              in our public annual reports.
+              INUA VIJANA (Swahili for "lift up the youth") is an independent non-profit registered in Kenya with regional offices across East and West Africa. We combine training, seed capital, mentorship and advocacy to remove the barriers young Africans face on the path to meaningful work and civic leadership.
             </p>
           </div>
         </div>
@@ -92,9 +83,12 @@ function About() {
           <div className="mt-16 flex flex-wrap gap-4">
             <Link to="/about/leadership" className="px-6 py-3 rounded-full bg-brand-green text-white font-bold text-sm uppercase tracking-wider hover:brightness-110">Meet our leadership</Link>
             <Link to="/about/reports" className="px-6 py-3 rounded-full border border-brand-navy/10 font-bold text-sm uppercase tracking-wider hover:bg-brand-navy/5">Read our annual reports</Link>
+            <Link to="/about/vision" className="px-6 py-3 rounded-full border border-brand-navy/10 font-bold text-sm uppercase tracking-wider hover:bg-brand-navy/5">Our vision & values</Link>
           </div>
         </div>
       </section>
+
+      <Outlet />
     </>
   );
 }

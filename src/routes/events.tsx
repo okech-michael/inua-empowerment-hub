@@ -22,10 +22,8 @@ const upcoming = [
 ];
 
 const past = [
-  { date: "Nov 2025", title: "Continental Assembly", loc: "Addis Ababa" },
-  { date: "Sep 2025", title: "Founders Cohort 4 Demo Day", loc: "Nairobi" },
-  { date: "Jul 2025", title: "Girls in STEM Camp", loc: "Accra" },
-  { date: "May 2025", title: "Alumni Reunion", loc: "Kigali" },
+  { date: "Aug 2026", title: "Launch Summit", loc: "Nairobi" },
+  { date: "Sep 2026", title: "Regional Kickoff Events", loc: "Kampala, Kigali, Accra" },
 ];
 
 function Events() {
