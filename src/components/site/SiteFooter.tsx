@@ -22,7 +22,9 @@ export function SiteFooter() {
               {[Linkedin, Twitter, Instagram, Facebook].map((Icon, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={Icon === Facebook ? "https://www.facebook.com/share/p/17TxKcGZ4H/" : "#"}
+                  target={Icon === Facebook ? "_blank" : undefined}
+                  rel={Icon === Facebook ? "noopener noreferrer" : undefined}
                   aria-label="Social link"
                   className="size-9 grid place-items-center rounded-full bg-white border border-brand-navy/5 text-brand-navy/60 hover:text-brand-green hover:border-brand-green/30 transition-all"
                 >
