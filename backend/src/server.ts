@@ -6,10 +6,8 @@ import { json, urlencoded } from "express";
 import { config } from "dotenv";
 import { logger, requestLogger } from "./utils/logger";
 import { errorHandler } from "./middleware/error.middleware";
-import authRoutes from "./routes/auth.routes";
 import donationRoutes from "./routes/donation.routes";
 import paymentRoutes from "./routes/payment.routes";
-import adminRoutes from "./routes/admin.routes";
 import { healthCheckRouter } from "./routes/health.routes";
 
 config();
@@ -39,10 +37,8 @@ app.use(
 import { auditLogger } from "./middleware/audit.middleware";
 
 app.use(auditLogger);
-app.use("/api/auth", authRoutes);
 app.use("/api/donations", donationRoutes);
 app.use("/api/payments", paymentRoutes);
-app.use("/api/admin", adminRoutes);
 app.use("/api/health", healthCheckRouter);
 
 app.use(errorHandler);

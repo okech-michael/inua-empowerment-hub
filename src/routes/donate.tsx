@@ -24,10 +24,13 @@ function Donate() {
   const [amount, setAmount] = useState(100);
   const [frequency, setFrequency] = useState<"once" | "monthly">("monthly");
   const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [donorMessage, setDonorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleDonate = () => {
+  const handleDonate = async () => {
     const normalizedPhone = phone.replace(/\D/g, "");
 
     if (!normalizedPhone || normalizedPhone.length < 10) {
@@ -36,16 +39,64 @@ function Donate() {
       return;
     }
 
-    const pin = window.prompt("Enter your M-Pesa PIN to complete payment");
-
-    if (!pin) {
-      setMessage("Payment canceled. Please enter your PIN to finish.");
+    if (!name.trim()) {
+      setMessage("Please provide your full name.");
       setIsSuccess(false);
       return;
     }
 
-    setMessage(`Thank you! Your donation of $${amount} has been submitted for processing.`);
-    setIsSuccess(true);
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const donationResponse = await fetch(`/api/donations`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          donor_name: name.trim(),
+          phone: normalizedPhone,
+          amount,
+          payment_method: "M-Pesa",
+          project: "General donation",
+          message: donorMessage.trim(),
+        }),
+      });
+
+      if (!donationResponse.ok) {
+        const errorData = await donationResponse.json();
+        throw new Error(errorData.message || "Donation submission failed.");
+      }
+
+      const donationData = await donationResponse.json();
+      const donationId = donationData.data?.id;
+
+      if (!donationId) {
+        throw new Error("Donation ID missing from response.");
+      }
+
+      const paymentResponse = await fetch(`/api/payments/stkpush`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ donationId }),
+      });
+
+      if (!paymentResponse.ok) {
+        const errorData = await paymentResponse.json();
+        throw new Error(errorData.message || "Payment initiation failed.");
+      }
+
+      setMessage(`Thank you! An M-Pesa prompt has been sent to ${normalizedPhone}. Complete the payment on your phone.`);
+      setIsSuccess(true);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Payment failed.");
+      setIsSuccess(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,12 +167,23 @@ function Donate() {
                     className="mt-2 w-full px-5 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/30"
                   />
                 </div>
+                <div>
+                  <label className="text-xs uppercase tracking-widest font-bold text-brand-navy/60">Full name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Jane Doe"
+                    className="mt-2 w-full px-5 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/30"
+                  />
+                </div>
                 <button
                   onClick={handleDonate}
-                  className="w-full px-6 py-4 bg-brand-green text-white rounded-full font-bold uppercase tracking-wider text-sm hover:brightness-110 flex items-center justify-center gap-2 transition-all"
+                  disabled={loading}
+                  className="w-full px-6 py-4 bg-brand-green text-white rounded-full font-bold uppercase tracking-wider text-sm hover:brightness-110 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <CreditCard className="h-4 w-4" />
-                  Donate ${amount} {frequency === "monthly" ? "monthly" : "once"}
+                  {loading ? "Processing..." : `Donate $${amount} ${frequency === "monthly" ? "monthly" : "once"}`}
                 </button>
                 {message ? (
                   <div

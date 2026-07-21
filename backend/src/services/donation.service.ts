@@ -42,6 +42,18 @@ export const updateDonationStatus = async (checkoutRequestId: string, updates: P
   return data;
 };
 
+export const updateDonationById = async (donationId: string, updates: Partial<Record<string, unknown>>) => {
+  const { data, error } = await supabase
+    .from("donations")
+    .update(updates)
+    .eq("id", donationId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+};
+
 export const getDonationByCheckoutRequestId = async (checkoutRequestId: string) => {
   const { data, error } = await supabase.from("donations").select("*").eq("checkout_request_id", checkoutRequestId).single();
   if (error) throw error;

@@ -6,7 +6,6 @@ A production-ready Node.js backend for the INUA VIJANA project.
 
 - Express API with TypeScript
 - Supabase PostgreSQL persistence
-- JWT authentication with bcrypt hashing
 - M-Pesa Daraja STK Push integration
 - Webhook callback handling
 - Admin dashboard APIs
@@ -65,10 +64,6 @@ Then deploy the backend using Vercel or any Node-compatible host.
 
 ## API Overview
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `POST /api/auth/logout`
-- `GET /api/auth/me`
 - `POST /api/donations`
 - `GET /api/donations`
 - `GET /api/donations/:id`

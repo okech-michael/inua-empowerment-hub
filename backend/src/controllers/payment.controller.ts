@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { sendDonationReceipt } from "../services/email.service";
 import { initiateStkPush, createTransactionRecord } from "../services/payment.service";
-import { getDonationByCheckoutRequestId, updateDonationStatus, getDonationByIdRecord } from "../services/donation.service";
-import { findUserById } from "../services/auth.service";
+import { getDonationByCheckoutRequestId, updateDonationStatus, updateDonationById, getDonationByIdRecord } from "../services/donation.service";
 import { stkPushSchema } from "../validators/payment.validator";
 import { parseMpesaCallback } from "../webhooks/mpesa.callback";
 
@@ -22,7 +20,7 @@ export const startStkPush = async (req: Request, res: Response) => {
   const checkoutRequestId = stkResponse?.CheckoutRequestID ?? null;
   const merchantRequestId = stkResponse?.MerchantRequestID ?? null;
 
-  const updatedDonation = await updateDonationStatus(checkoutRequestId, {
+  const updatedDonation = await updateDonationById(donation.id, {
     checkout_request_id: checkoutRequestId,
     merchant_request_id: merchantRequestId,
     status: "PENDING",
@@ -58,17 +56,6 @@ export const handlePaymentCallback = async (req: Request, res: Response) => {
   });
 
   res.status(200).json({ success: true });
-
-  if (donation.user_id) {
-    const user = await findUserById(donation.user_id);
-    if (user?.email) {
-      sendDonationReceipt({
-        email: user.email,
-        fullname: user.fullname,
-        amount: donation.amount,
-      }).catch(() => undefined);
-    }
-  }
 };
 
 export const getPaymentStatus = async (req: Request, res: Response) => {
