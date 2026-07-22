@@ -30,9 +30,6 @@ function Donate() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const apiBaseUrl = import.meta.env.VITE_API_BACKEND_URL || "";
-  const apiUrl = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl;
-
   const handleDonate = async () => {
     const normalizedPhone = phone.replace(/\D/g, "");
 
@@ -52,7 +49,7 @@ function Donate() {
     setMessage("");
 
     try {
-      const donationResponse = await fetch(`${apiUrl}/api/donations`, {
+      const donationResponse = await fetch(`/api/donations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +76,7 @@ function Donate() {
         throw new Error("Donation ID missing from response.");
       }
 
-      const paymentResponse = await fetch(`${apiUrl}/api/payments/stkpush`, {
+      const paymentResponse = await fetch(`/api/payments/stkpush`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
