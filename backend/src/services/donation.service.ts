@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase.config";
+import { supabase } from "../config/supabase.config.js";
 
 export const createDonationRecord = async (payload: {
   user_id?: string | null;

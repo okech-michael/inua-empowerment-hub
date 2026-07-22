@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { createAuditLog } from "../services/audit.service";
-import { logger } from "../utils/logger";
+import { createAuditLog } from "../services/audit.service.js";
+import { logger } from "../utils/logger.js";
 
 export const auditLogger = async (req: Request, _res: Response, next: NextFunction) => {
   try {

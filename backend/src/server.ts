@@ -4,12 +4,12 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import { json, urlencoded } from "express";
 import { config } from "dotenv";
-import { logger, requestLogger } from "./utils/logger";
-import { errorHandler } from "./middleware/error.middleware";
-import donationRoutes from "./routes/donation.routes";
-import paymentRoutes from "./routes/payment.routes";
-import formsRoutes from "./routes/forms.routes";
-import { healthCheckRouter } from "./routes/health.routes";
+import { logger, requestLogger } from "./utils/logger.js";
+import { errorHandler } from "./middleware/error.middleware.js";
+import donationRoutes from "./routes/donation.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
+import formsRoutes from "./routes/forms.routes.js";
+import { healthCheckRouter } from "./routes/health.routes.js";
 
 config();
 
@@ -35,7 +35,7 @@ app.use(
   }),
 );
 
-import { auditLogger } from "./middleware/audit.middleware";
+import { auditLogger } from "./middleware/audit.middleware.js";
 
 app.use(auditLogger);
 app.use("/api/donations", donationRoutes);

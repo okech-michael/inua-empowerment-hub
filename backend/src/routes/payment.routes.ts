@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { startStkPush, handlePaymentCallback, getPaymentStatus } from "../controllers/payment.controller";
+import { startStkPush, handlePaymentCallback, getPaymentStatus } from "../controllers/payment.controller.js";
 
-import { validate } from "../middleware/validation.middleware";
-import { stkPushSchema } from "../validators/payment.validator";
+import { validate } from "../middleware/validation.middleware.js";
+import { stkPushSchema } from "../validators/payment.validator.js";
 
 const router = Router();
 

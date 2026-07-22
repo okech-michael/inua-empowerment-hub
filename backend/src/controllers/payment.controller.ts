@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { initiateStkPush, createTransactionRecord } from "../services/payment.service";
-import { getDonationByCheckoutRequestId, updateDonationStatus, updateDonationById, getDonationByIdRecord } from "../services/donation.service";
-import { stkPushSchema } from "../validators/payment.validator";
-import { parseMpesaCallback } from "../webhooks/mpesa.callback";
+import { initiateStkPush, createTransactionRecord } from "../services/payment.service.js";
+import { getDonationByCheckoutRequestId, updateDonationStatus, updateDonationById, getDonationByIdRecord } from "../services/donation.service.js";
+import { stkPushSchema } from "../validators/payment.validator.js";
+import { parseMpesaCallback } from "../webhooks/mpesa.callback.js";
 
 export const startStkPush = async (req: Request, res: Response) => {
   const validation = stkPushSchema.safeParse(req.body);

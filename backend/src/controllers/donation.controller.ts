@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
-import { createDonationRecord, getDonations, getDonationByIdRecord } from "../services/donation.service";
-import { donationSchema } from "../validators/donation.validator";
+import { createDonationRecord, getDonations, getDonationByIdRecord } from "../services/donation.service.js";
+import { donationSchema } from "../validators/donation.validator.js";
 
 export const createDonation: RequestHandler = async (req, res) => {
   const validation = donationSchema.safeParse(req.body);

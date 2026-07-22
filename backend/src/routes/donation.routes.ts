@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createDonation, getAllDonations, getDonationById } from "../controllers/donation.controller";
+import { createDonation, getAllDonations, getDonationById } from "../controllers/donation.controller.js";
 
-import { validate } from "../middleware/validation.middleware";
-import { donationSchema } from "../validators/donation.validator";
+import { validate } from "../middleware/validation.middleware.js";
+import { donationSchema } from "../validators/donation.validator.js";
 
 const router = Router();
 

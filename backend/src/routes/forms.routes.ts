@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import { sendEmail } from "../services/email.service";
+import { sendEmail } from "../services/email.service.js";
 
 const router = Router();
 
