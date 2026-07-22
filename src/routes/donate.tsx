@@ -89,7 +89,12 @@ function Donate() {
         throw new Error(errorMessage);
       }
 
-      setMessage(`Thank you! An M-Pesa prompt has been sent to ${normalizedPhone}. Complete the payment on your phone.`);
+      const paymentData = await paymentResponse.json().catch(() => null);
+      const paymentMessage = paymentData?.data?.checkoutRequestId
+        ? `Thank you! An M-Pesa prompt has been sent to ${normalizedPhone}. Complete the payment on your phone.`
+        : "Donation recorded successfully. M-Pesa is not configured yet, so your payment prompt could not be initiated automatically.";
+
+      setMessage(paymentMessage);
       setIsSuccess(true);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Payment failed.");
@@ -101,11 +106,16 @@ function Donate() {
 
   const getResponseErrorMessage = async (response: Response, fallback: string) => {
     try {
-      const data = await response.json();
-      return (data?.message as string) || fallback;
+      const contentType = response.headers.get("content-type");
+      if (contentType?.includes("application/json")) {
+        const data = await response.json();
+        return (data?.message as string) || fallback;
+      } else {
+        const text = await response.text();
+        return text ? `${fallback} (${text})` : fallback;
+      }
     } catch {
-      const text = await response.text();
-      return text ? `${fallback} (${text})` : fallback;
+      return fallback;
     }
   };
 

@@ -6,9 +6,7 @@ const darajaShortcode = process.env.DARAJA_SHORTCODE;
 const darajaPasskey = process.env.DARAJA_PASSKEY;
 const darajaCallbackUrl = process.env.DARAJA_CALLBACK_URL;
 
-if (!darajaConsumerKey || !darajaConsumerSecret || !darajaShortcode || !darajaPasskey || !darajaCallbackUrl) {
-  throw new Error("All Daraja environment variables must be defined");
-}
+const isDarajaConfigured = Boolean(darajaConsumerKey && darajaConsumerSecret && darajaShortcode && darajaPasskey && darajaCallbackUrl);
 
 const getDarajaToken = async () => {
   const credentials = Buffer.from(`${darajaConsumerKey}:${darajaConsumerSecret}`).toString("base64");
@@ -38,6 +36,10 @@ const getTimestamp = () => {
 };
 
 export const initiateStkPush = async (phone: string, amount: number, accountReference: string, transactionDesc: string) => {
+  if (!isDarajaConfigured) {
+    throw new Error("M-Pesa configuration is incomplete. Please set the Daraja environment variables.");
+  }
+
   const token = await getDarajaToken();
   const timestamp = getTimestamp();
   const password = Buffer.from(`${darajaShortcode}${darajaPasskey}${timestamp}`).toString("base64");

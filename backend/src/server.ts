@@ -8,6 +8,7 @@ import { logger, requestLogger } from "./utils/logger";
 import { errorHandler } from "./middleware/error.middleware";
 import donationRoutes from "./routes/donation.routes";
 import paymentRoutes from "./routes/payment.routes";
+import formsRoutes from "./routes/forms.routes";
 import { healthCheckRouter } from "./routes/health.routes";
 
 config();
@@ -39,6 +40,7 @@ import { auditLogger } from "./middleware/audit.middleware";
 app.use(auditLogger);
 app.use("/api/donations", donationRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api", formsRoutes);
 app.use("/api/health", healthCheckRouter);
 
 app.use(errorHandler);
