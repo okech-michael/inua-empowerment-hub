@@ -30,6 +30,9 @@ function Donate() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const apiBaseUrl = import.meta.env.VITE_API_BACKEND_URL || "";
+  const apiUrl = apiBaseUrl.endsWith("/") ? apiBaseUrl.slice(0, -1) : apiBaseUrl;
+
   const handleDonate = async () => {
     const normalizedPhone = phone.replace(/\D/g, "");
 
@@ -49,7 +52,7 @@ function Donate() {
     setMessage("");
 
     try {
-      const donationResponse = await fetch(`/api/donations`, {
+      const donationResponse = await fetch(`${apiUrl}/api/donations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,8 +68,8 @@ function Donate() {
       });
 
       if (!donationResponse.ok) {
-        const errorData = await donationResponse.json();
-        throw new Error(errorData.message || "Donation submission failed.");
+        const errorMessage = await getResponseErrorMessage(donationResponse, "Donation submission failed.");
+        throw new Error(errorMessage);
       }
 
       const donationData = await donationResponse.json();
@@ -76,7 +79,7 @@ function Donate() {
         throw new Error("Donation ID missing from response.");
       }
 
-      const paymentResponse = await fetch(`/api/payments/stkpush`, {
+      const paymentResponse = await fetch(`${apiUrl}/api/payments/stkpush`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,8 +88,8 @@ function Donate() {
       });
 
       if (!paymentResponse.ok) {
-        const errorData = await paymentResponse.json();
-        throw new Error(errorData.message || "Payment initiation failed.");
+        const errorMessage = await getResponseErrorMessage(paymentResponse, "Payment initiation failed.");
+        throw new Error(errorMessage);
       }
 
       setMessage(`Thank you! An M-Pesa prompt has been sent to ${normalizedPhone}. Complete the payment on your phone.`);
@@ -96,6 +99,16 @@ function Donate() {
       setIsSuccess(false);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getResponseErrorMessage = async (response: Response, fallback: string) => {
+    try {
+      const data = await response.json();
+      return (data?.message as string) || fallback;
+    } catch {
+      const text = await response.text();
+      return text ? `${fallback} (${text})` : fallback;
     }
   };
 

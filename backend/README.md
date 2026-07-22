@@ -8,7 +8,6 @@ A production-ready Node.js backend for the INUA VIJANA project.
 - Supabase PostgreSQL persistence
 - M-Pesa Daraja STK Push integration
 - Webhook callback handling
-- Admin dashboard APIs
 - Validation with Zod
 - Logging and centralized error handling
 - Vercel Serverless compatibility
@@ -18,7 +17,6 @@ A production-ready Node.js backend for the INUA VIJANA project.
 ```
 backend/
 ├── src/
-│   ├── auth/
 │   ├── config/
 │   ├── controllers/
 │   ├── database/
@@ -38,7 +36,7 @@ backend/
 ## Setup
 
 1. Copy `.env.example` to `.env`.
-2. Fill in your Supabase, JWT, and Daraja credentials.
+2. Fill in your Supabase and Daraja credentials.
 3. Install dependencies:
 
 ```bash
@@ -70,8 +68,7 @@ Then deploy the backend using Vercel or any Node-compatible host.
 - `POST /api/payments/stkpush`
 - `POST /api/payments/callback`
 - `GET /api/payments/status/:checkoutRequestId`
-- `GET /api/admin/dashboard`
-- `GET /api/admin/reports`
+- `GET /api/health`
 
 ## Database
 
