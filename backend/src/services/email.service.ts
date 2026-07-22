@@ -1,34 +1,13 @@
-import nodemailer from "nodemailer";
 import sgMail from "@sendgrid/mail";
 
-const emailProvider = process.env.EMAIL_PROVIDER ?? "sendgrid";
 const emailFrom = process.env.EMAIL_FROM ?? "no-reply@yourdomain.com";
 const sendgridApiKey = process.env.SENDGRID_API_KEY;
 
-if (emailProvider === "sendgrid" && !sendgridApiKey) {
-  throw new Error("SENDGRID_API_KEY must be defined for SendGrid provider");
+if (!sendgridApiKey) {
+  throw new Error("SENDGRID_API_KEY must be defined");
 }
 
-sgMail.setApiKey(sendgridApiKey ?? "");
-
-const createSmtpTransporter = () => {
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT || 587);
-  const user = process.env.SMTP_USER;
-  const password = process.env.SMTP_PASSWORD;
-  const secure = process.env.SMTP_SECURE === "true";
-
-  if (!host || !user || !password) {
-    throw new Error("SMTP configuration must be defined for SMTP provider");
-  }
-
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: { user, pass: password },
-  });
-};
+sgMail.setApiKey(sendgridApiKey);
 
 export const sendEmail = async ({
   to,
@@ -41,20 +20,9 @@ export const sendEmail = async ({
   html: string;
   text: string;
 }) => {
-  if (emailProvider === "sendgrid") {
-    return sgMail.send({
-      to,
-      from: emailFrom,
-      subject,
-      html,
-      text,
-    });
-  }
-
-  const transporter = createSmtpTransporter();
-  return transporter.sendMail({
-    from: emailFrom,
+  return sgMail.send({
     to,
+    from: emailFrom,
     subject,
     html,
     text,
