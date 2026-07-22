@@ -3,11 +3,9 @@ import sgMail from "@sendgrid/mail";
 const emailFrom = process.env.EMAIL_FROM ?? "no-reply@yourdomain.com";
 const sendgridApiKey = process.env.SENDGRID_API_KEY;
 
-if (!sendgridApiKey) {
-  throw new Error("SENDGRID_API_KEY must be defined");
+if (sendgridApiKey) {
+  sgMail.setApiKey(sendgridApiKey);
 }
-
-sgMail.setApiKey(sendgridApiKey);
 
 export const sendEmail = async ({
   to,
@@ -20,6 +18,11 @@ export const sendEmail = async ({
   html: string;
   text: string;
 }) => {
+  if (!sendgridApiKey) {
+    console.warn("SENDGRID_API_KEY not configured, email not sent to:", to);
+    return { success: true, message: "Email notification skipped (SendGrid not configured)" };
+  }
+
   return sgMail.send({
     to,
     from: emailFrom,
