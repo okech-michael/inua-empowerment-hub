@@ -1,4 +1,4 @@
-import server from "../backend/src/server";
+import server from "../backend/src/server.js";
 import serverless from "serverless-http";
 
 export default serverless(server);
