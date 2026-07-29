@@ -193,7 +193,7 @@ function Donate() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Jane Doe"
+                    placeholder="Michael Onyango"
                     className="mt-2 w-full px-5 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-green/30"
                   />
                 </div>
