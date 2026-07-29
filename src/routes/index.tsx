@@ -1,16 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Calendar, Heart, Users } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
-import programTech from "@/assets/program-tech.jpg";
-import programLeadership from "@/assets/program-leadership.jpg";
-import programClimate from "@/assets/program-climate.jpg";
-import programEntrepreneur from "@/assets/program-entrepreneur.jpg";
-import programEducation from "@/assets/program-education.jpg";
-import programHealth from "@/assets/program-health.jpg";
-import storyWorkshop from "@/assets/story-workshop.jpg";
-import storyGraduation from "@/assets/story-graduation.jpg";
-import portraitFemale from "@/assets/portrait-female.jpg";
-import eventConference from "@/assets/event-conference.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,37 +28,37 @@ const programs = [
     tag: "Technology",
     title: "Digital Excellence Hubs",
     desc: "Advanced cloud computing, AI and software engineering training for graduates across the region.",
-    image: programTech,
+    image: sitePhotos.programsTechnology,
   },
   {
     tag: "Governance",
     title: "Civic Leadership Academy",
     desc: "Preparing the next generation of public servants with ethical governance and policy frameworks.",
-    image: programLeadership,
+    image: sitePhotos.programsLeadership,
   },
   {
     tag: "Sustainability",
     title: "Green Venture Fund",
     desc: "Seed funding and technical support for youth-led climate adaptation and clean energy startups.",
-    image: programClimate,
+    image: sitePhotos.programsClimate,
   },
   {
     tag: "Entrepreneurship",
     title: "Founders Accelerator",
     desc: "Mentorship, capital and networks for early-stage youth-led businesses across East Africa.",
-    image: programEntrepreneur,
+    image: sitePhotos.programsEntrepreneurship,
   },
   {
     tag: "Education",
     title: "Scholars Programme",
     desc: "Full scholarships and academic mentorship for underserved secondary and tertiary students.",
-    image: programEducation,
+    image: sitePhotos.programsEducation,
   },
   {
     tag: "Health",
     title: "Community Health Corps",
     desc: "Training young community health workers to deliver preventative care in rural districts.",
-    image: programHealth,
+    image: sitePhotos.programsHealth,
   },
 ];
 
@@ -79,7 +69,7 @@ function Home() {
       <section className="relative h-[92vh] min-h-[640px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImg}
+            src={sitePhotos.hero}
             alt="Young African professionals collaborating in a modern workspace"
             className="w-full h-full object-cover animate-slow-zoom"
             width={1920}
@@ -164,7 +154,7 @@ function Home() {
           <div className="lg:col-span-6">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
               <img
-                src={portraitFemale}
+                src={sitePhotos.homeMission}
                 alt="Young African leader"
                 loading="lazy"
                 className="w-full h-full object-cover"
@@ -239,7 +229,7 @@ function Home() {
             <div className="lg:col-span-8">
               <div className="relative group overflow-hidden rounded-3xl">
                 <img
-                  src={storyGraduation}
+                  src={sitePhotos.impactFeature}
                   alt="Graduation ceremony"
                   loading="lazy"
                   className="w-full aspect-[4/3] object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -265,7 +255,7 @@ function Home() {
               <Link to="/impact" className="group">
                 <div className="overflow-hidden rounded-2xl aspect-video mb-4">
                   <img
-                    src={storyWorkshop}
+                    src={sitePhotos.impactCivic}
                     alt="Community workshop"
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -282,7 +272,7 @@ function Home() {
               <Link to="/impact" className="group">
                 <div className="overflow-hidden rounded-2xl aspect-video mb-4">
                   <img
-                    src={eventConference}
+                    src={sitePhotos.eventsConference}
                     alt="Annual conference"
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -429,7 +419,7 @@ function Home() {
               <div className="absolute -inset-6 bg-brand-green/20 blur-3xl rounded-full" aria-hidden />
               <div className="relative rounded-3xl overflow-hidden border border-white/10">
                 <img
-                  src={portraitFemale}
+                  src={sitePhotos.homeTestimonial}
                   alt="Testimonial portrait"
                   loading="lazy"
                   className="w-full aspect-square object-cover"

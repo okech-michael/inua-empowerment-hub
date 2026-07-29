@@ -1,17 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import hero from "@/assets/hero.jpg";
-import storyGraduation from "@/assets/story-graduation.jpg";
-import storyWorkshop from "@/assets/story-workshop.jpg";
-import eventConference from "@/assets/event-conference.jpg";
-import programTech from "@/assets/program-tech.jpg";
-import programLeadership from "@/assets/program-leadership.jpg";
-import programClimate from "@/assets/program-climate.jpg";
-import programEducation from "@/assets/program-education.jpg";
-import programEntrepreneur from "@/assets/program-entrepreneur.jpg";
-import programHealth from "@/assets/program-health.jpg";
-import portraitFemale from "@/assets/portrait-female.jpg";
-import portraitMale from "@/assets/portrait-male.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -24,18 +13,18 @@ export const Route = createFileRoute("/gallery")({
 });
 
 const images = [
-  { src: hero, span: "row-span-2 col-span-2" },
-  { src: storyGraduation, span: "" },
-  { src: storyWorkshop, span: "" },
-  { src: eventConference, span: "col-span-2" },
-  { src: programTech, span: "row-span-2" },
-  { src: programLeadership, span: "" },
-  { src: programClimate, span: "" },
-  { src: programEducation, span: "" },
-  { src: programEntrepreneur, span: "" },
-  { src: portraitFemale, span: "" },
-  { src: programHealth, span: "col-span-2" },
-  { src: portraitMale, span: "" },
+  { src: sitePhotos.galleryHero, span: "row-span-2 col-span-2" },
+  { src: sitePhotos.galleryStory, span: "" },
+  { src: sitePhotos.galleryWorkshop, span: "" },
+  { src: sitePhotos.galleryConference, span: "col-span-2" },
+  { src: sitePhotos.galleryTech, span: "row-span-2" },
+  { src: sitePhotos.galleryLeadership, span: "" },
+  { src: sitePhotos.galleryClimate, span: "" },
+  { src: sitePhotos.galleryEducation, span: "" },
+  { src: sitePhotos.galleryEntrepreneur, span: "" },
+  { src: sitePhotos.galleryPortrait, span: "" },
+  { src: sitePhotos.galleryHealth, span: "col-span-2" },
+  { src: sitePhotos.galleryCommunity, span: "" },
 ];
 
 function Gallery() {

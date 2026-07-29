@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import storyGraduation from "@/assets/story-graduation.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -39,7 +39,7 @@ function About() {
       <section className="py-24">
         <div className="container-page grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
-            <img src={storyGraduation} alt="Community moment" loading="lazy" className="rounded-3xl w-full aspect-[4/3] object-cover" />
+            <img src={sitePhotos.aboutStory} alt="Community members learning and gathering together" loading="lazy" className="rounded-3xl w-full aspect-[4/3] object-cover" />
           </div>
           <div className="lg:col-span-6">
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Who we are</h2>

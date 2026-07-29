@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Calendar, MapPin } from "lucide-react";
-import eventConference from "@/assets/event-conference.jpg";
-import storyWorkshop from "@/assets/story-workshop.jpg";
-import storyGraduation from "@/assets/story-graduation.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -16,9 +14,9 @@ export const Route = createFileRoute("/events")({
 });
 
 const upcoming = [
-  { date: "Mar 12, 2026", title: "Africa Youth Innovation Summit", loc: "Nairobi · Kenya", image: eventConference, tag: "Conference" },
-  { date: "Apr 4, 2026", title: "Green Ventures Pitch Day", loc: "Kigali · Rwanda", image: storyWorkshop, tag: "Pitch Day" },
-  { date: "May 22, 2026", title: "Digital Skills Bootcamp", loc: "Kampala · Uganda", image: storyGraduation, tag: "Bootcamp" },
+  { date: "Mar 12, 2026", title: "Africa Youth Innovation Summit", loc: "Nairobi · Kenya", image: sitePhotos.eventsConference, tag: "Conference" },
+  { date: "Apr 4, 2026", title: "Green Ventures Pitch Day", loc: "Kigali · Rwanda", image: sitePhotos.eventsPitch, tag: "Pitch Day" },
+  { date: "May 22, 2026", title: "Digital Skills Bootcamp", loc: "Kampala · Uganda", image: sitePhotos.eventsBootcamp, tag: "Bootcamp" },
 ];
 
 const past = [

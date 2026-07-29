@@ -1,12 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHero } from "@/components/site/PageHero";
-import programTech from "@/assets/program-tech.jpg";
-import programClimate from "@/assets/program-climate.jpg";
-import programEntrepreneur from "@/assets/program-entrepreneur.jpg";
-import programLeadership from "@/assets/program-leadership.jpg";
-import programHealth from "@/assets/program-health.jpg";
-import programEducation from "@/assets/program-education.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -21,12 +16,12 @@ export const Route = createFileRoute("/projects")({
 type Status = "All" | "Ongoing" | "Completed" | "Upcoming";
 
 const projects = [
-  { title: "Rift Valley Digital Bootcamp", country: "Kenya", status: "Ongoing", image: programTech, budget: "$420k" },
-  { title: "Kigali Solar Startups Cohort", country: "Rwanda", status: "Ongoing", image: programClimate, budget: "$1.2M" },
-  { title: "Kampala Founders Sprint", country: "Uganda", status: "Ongoing", image: programEntrepreneur, budget: "$680k" },
-  { title: "Youth Assembly 2026", country: "Kenya", status: "Completed", image: programLeadership, budget: "$210k" },
-  { title: "Community Health Corps Pilot", country: "Tanzania", status: "Completed", image: programHealth, budget: "$540k" },
-  { title: "Girls in STEM Initiative", country: "Ghana", status: "Upcoming", image: programEducation, budget: "$300k" },
+  { title: "Rift Valley Digital Bootcamp", country: "Kenya", status: "Ongoing", image: sitePhotos.projectDigitalBootcamp, budget: "$420k" },
+  { title: "Kigali Solar Startups Cohort", country: "Rwanda", status: "Ongoing", image: sitePhotos.projectSolarStartups, budget: "$1.2M" },
+  { title: "Kampala Founders Sprint", country: "Uganda", status: "Ongoing", image: sitePhotos.projectFoundersSprint, budget: "$680k" },
+  { title: "Youth Assembly 2026", country: "Kenya", status: "Completed", image: sitePhotos.projectYouthAssembly, budget: "$210k" },
+  { title: "Community Health Corps Pilot", country: "Tanzania", status: "Completed", image: sitePhotos.projectHealthPilot, budget: "$540k" },
+  { title: "Girls in STEM Initiative", country: "Ghana", status: "Upcoming", image: sitePhotos.projectGirlsStem, budget: "$300k" },
 ];
 
 function Projects() {

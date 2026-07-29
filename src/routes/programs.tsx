@@ -1,11 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import programTech from "@/assets/program-tech.jpg";
-import programLeadership from "@/assets/program-leadership.jpg";
-import programClimate from "@/assets/program-climate.jpg";
-import programEntrepreneur from "@/assets/program-entrepreneur.jpg";
-import programEducation from "@/assets/program-education.jpg";
-import programHealth from "@/assets/program-health.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -18,14 +13,14 @@ export const Route = createFileRoute("/programs")({
 });
 
 const items = [
-  { tag: "Leadership", title: "Civic Leadership Academy", desc: "A 12-month fellowship preparing young leaders for public service and civic engagement.", image: programLeadership },
-  { tag: "Digital Skills", title: "Digital Excellence Hubs", desc: "Cloud computing, AI and software engineering training with direct pipelines to employers.", image: programTech },
-  { tag: "Entrepreneurship", title: "Founders Accelerator", desc: "Seed capital, mentorship and go-to-market support for early-stage youth-led ventures.", image: programEntrepreneur },
-  { tag: "Climate Action", title: "Green Venture Fund", desc: "Non-dilutive funding and technical assistance for clean energy and climate adaptation startups.", image: programClimate },
-  { tag: "Education", title: "Scholars Programme", desc: "Full scholarships, academic tutoring and life-skills mentorship for underserved students.", image: programEducation },
-  { tag: "Health", title: "Community Health Corps", desc: "Training and deploying young community health workers in underserved rural districts.", image: programHealth },
-  { tag: "Innovation", title: "Youth Innovation Challenge", desc: "An annual continental competition awarding grants to the boldest youth-led solutions.", image: programTech },
-  { tag: "Civic Engagement", title: "Voter Empowerment Initiative", desc: "Non-partisan civic education equipping first-time voters to shape their democracies.", image: programLeadership },
+  { tag: "Leadership", title: "Civic Leadership Academy", desc: "A 12-month fellowship preparing young leaders for public service and civic engagement.", image: sitePhotos.programsLeadership },
+  { tag: "Digital Skills", title: "Digital Excellence Hubs", desc: "Cloud computing, AI and software engineering training with direct pipelines to employers.", image: sitePhotos.programsTechnology },
+  { tag: "Entrepreneurship", title: "Founders Accelerator", desc: "Seed capital, mentorship and go-to-market support for early-stage youth-led ventures.", image: sitePhotos.programsEntrepreneurship },
+  { tag: "Climate Action", title: "Green Venture Fund", desc: "Non-dilutive funding and technical assistance for clean energy and climate adaptation startups.", image: sitePhotos.programsClimate },
+  { tag: "Education", title: "Scholars Programme", desc: "Full scholarships, academic tutoring and life-skills mentorship for underserved students.", image: sitePhotos.programsEducation },
+  { tag: "Health", title: "Community Health Corps", desc: "Training and deploying young community health workers in underserved rural districts.", image: sitePhotos.programsHealth },
+  { tag: "Innovation", title: "Youth Innovation Challenge", desc: "An annual continental competition awarding grants to the boldest youth-led solutions.", image: sitePhotos.programsTechnologyAlt },
+  { tag: "Civic Engagement", title: "Voter Empowerment Initiative", desc: "Non-partisan civic education equipping first-time voters to shape their democracies.", image: sitePhotos.programsLeadershipAlt },
 ];
 
 function Programs() {

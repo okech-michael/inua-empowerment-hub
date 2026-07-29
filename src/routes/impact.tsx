@@ -1,10 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import storyGraduation from "@/assets/story-graduation.jpg";
-import storyWorkshop from "@/assets/story-workshop.jpg";
-import portraitFemale from "@/assets/portrait-female.jpg";
-import portraitMale from "@/assets/portrait-male.jpg";
-import eventConference from "@/assets/event-conference.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/impact")({
   head: () => ({
@@ -28,7 +24,7 @@ function Impact() {
       <section className="py-24">
         <div className="container-page">
           <Link to="/impact" className="group block relative rounded-3xl overflow-hidden">
-            <img src={storyGraduation} alt="Featured story" loading="lazy" className="w-full aspect-[16/8] object-cover transition-transform duration-1000 group-hover:scale-105" />
+            <img src={sitePhotos.impactFeature} alt="Featured story" loading="lazy" className="w-full aspect-[16/8] object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-x-0 bottom-0 p-10 md:p-16 bg-gradient-to-t from-brand-navy via-brand-navy/70 to-transparent text-white">
               <span className="text-brand-yellow font-extrabold uppercase text-[11px] tracking-[0.2em]">Featured</span>
               <h3 className="mt-4 text-3xl md:text-5xl font-extrabold max-w-3xl leading-[1.1]">
@@ -39,12 +35,12 @@ function Impact() {
 
           <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { image: portraitFemale, tag: "Entrepreneurship", title: "Amina built Kenya's fastest-growing fintech for the unbanked." },
-              { image: portraitMale, tag: "Climate", title: "How Samuel scaled solar micro-grids to 40 villages in 18 months." },
-              { image: storyWorkshop, tag: "Civic", title: "The workshop that turned 500 first-time voters into local leaders." },
-              { image: eventConference, tag: "Innovation", title: "Inside the Africa Youth Assembly: 4,000 delegates, one vision." },
-              { image: portraitFemale, tag: "Health", title: "Community health corps reduces child mortality by 34% in Tanzania." },
-              { image: storyGraduation, tag: "Education", title: "First-generation scholars: the graduates of 2026, in their own words." },
+              { image: sitePhotos.impactEntrepreneurship, tag: "Entrepreneurship", title: "Amina built Kenya's fastest-growing fintech for the unbanked." },
+              { image: sitePhotos.impactClimate, tag: "Climate", title: "How Samuel scaled solar micro-grids to 40 villages in 18 months." },
+              { image: sitePhotos.impactCivic, tag: "Civic", title: "The workshop that turned 500 first-time voters into local leaders." },
+              { image: sitePhotos.impactInnovation, tag: "Innovation", title: "Inside the Africa Youth Assembly: 4,000 delegates, one vision." },
+              { image: sitePhotos.impactHealth, tag: "Health", title: "Community health corps reduces child mortality by 34% in Tanzania." },
+              { image: sitePhotos.impactEducation, tag: "Education", title: "First-generation scholars: the graduates of 2026, in their own words." },
             ].map((s, i) => (
               <Link key={i} to="/impact" className="group">
                 <div className="overflow-hidden rounded-2xl aspect-[4/3] mb-6">

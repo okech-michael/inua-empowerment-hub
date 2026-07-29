@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import storyGraduation from "@/assets/story-graduation.jpg";
-import storyWorkshop from "@/assets/story-workshop.jpg";
-import eventConference from "@/assets/event-conference.jpg";
-import programTech from "@/assets/program-tech.jpg";
-import programLeadership from "@/assets/program-leadership.jpg";
-import programClimate from "@/assets/program-climate.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -18,12 +13,12 @@ export const Route = createFileRoute("/news")({
 });
 
 const articles = [
-  { image: storyGraduation, tag: "Press Release", date: "Oct 15, 2026", title: "INUA VIJANA announces $12M expansion into West Africa" },
-  { image: storyWorkshop, tag: "Impact", date: "Sep 28, 2026", title: "Community Health Corps reaches 50,000 beneficiaries in initial rollout" },
-  { image: eventConference, tag: "Event", date: "Sep 10, 2026", title: "4,000 delegates convene at Africa Youth Assembly 2026" },
-  { image: programTech, tag: "Partnership", date: "Aug 22, 2026", title: "Partnership with Mastercard Foundation for Digital Excellence Hubs" },
-  { image: programLeadership, tag: "Announcement", date: "Jul 30, 2026", title: "Civic Leadership Academy welcomes inaugural fellows" },
-  { image: programClimate, tag: "Grants", date: "Jul 15, 2026", title: "Green Venture Fund deploys $2.1M to its first cohort startups" },
+  { image: sitePhotos.newsExpansion, tag: "Press Release", date: "Oct 15, 2026", title: "INUA VIJANA announces $12M expansion into West Africa" },
+  { image: sitePhotos.newsHealth, tag: "Impact", date: "Sep 28, 2026", title: "Community Health Corps reaches 50,000 beneficiaries in initial rollout" },
+  { image: sitePhotos.newsAssembly, tag: "Event", date: "Sep 10, 2026", title: "4,000 delegates convene at Africa Youth Assembly 2026" },
+  { image: sitePhotos.newsPartnership, tag: "Partnership", date: "Aug 22, 2026", title: "Partnership with Mastercard Foundation for Digital Excellence Hubs" },
+  { image: sitePhotos.newsLeadership, tag: "Announcement", date: "Jul 30, 2026", title: "Civic Leadership Academy welcomes inaugural fellows" },
+  { image: sitePhotos.newsClimate, tag: "Grants", date: "Jul 15, 2026", title: "Green Venture Fund deploys $2.1M to its first cohort startups" },
 ];
 
 function News() {

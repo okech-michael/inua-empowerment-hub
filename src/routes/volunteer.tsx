@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Check } from "lucide-react";
-import storyWorkshop from "@/assets/story-workshop.jpg";
+import { sitePhotos } from "@/lib/unsplash-images";
 
 export const Route = createFileRoute("/volunteer")({
   head: () => ({
@@ -45,7 +45,7 @@ function Volunteer() {
               ))}
             </div>
 
-            <img src={storyWorkshop} alt="Volunteer workshop" loading="lazy" className="mt-12 rounded-3xl w-full aspect-[4/3] object-cover" />
+            <img src={sitePhotos.volunteerWorkshop} alt="Volunteers collaborating during a community workshop" loading="lazy" className="mt-12 rounded-3xl w-full aspect-[4/3] object-cover" />
           </div>
 
           <form
