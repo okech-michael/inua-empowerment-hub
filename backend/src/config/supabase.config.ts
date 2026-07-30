@@ -1,14 +1,33 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+let cachedClient: SupabaseClient | null = null;
 
-if (!supabaseUrl || !supabaseServiceRoleKey) {
-  throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be defined");
-}
+const getSupabaseConfig = () => {
+  const supabaseUrl = process.env.SUPABASE_URL?.trim();
+  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
-export const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
-  auth: {
-    persistSession: false,
-  },
-});
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    return null;
+  }
+
+  return { supabaseUrl, supabaseServiceRoleKey };
+};
+
+export const getSupabaseClient = () => {
+  if (cachedClient) {
+    return cachedClient;
+  }
+
+  const config = getSupabaseConfig();
+  if (!config) {
+    throw new Error("Supabase is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
+  }
+
+  cachedClient = createClient(config.supabaseUrl, config.supabaseServiceRoleKey, {
+    auth: {
+      persistSession: false,
+    },
+  });
+
+  return cachedClient;
+};

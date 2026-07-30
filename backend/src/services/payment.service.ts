@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase.config.js";
+import { getSupabaseClient } from "../config/supabase.config.js";
 
 const darajaConsumerKey = process.env.DARAJA_CONSUMER_KEY;
 const darajaConsumerSecret = process.env.DARAJA_CONSUMER_SECRET;
@@ -82,6 +82,7 @@ export const createTransactionRecord = async (payload: {
   result_description: string;
   callback_payload: Record<string, unknown>;
 }) => {
+  const supabase = getSupabaseClient();
   const { data, error } = await supabase.from("transactions").insert([payload]).select().single();
   if (error) throw error;
   return data;

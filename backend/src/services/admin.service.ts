@@ -1,6 +1,7 @@
-import { supabase } from "../config/supabase.config";
+import { getSupabaseClient } from "../config/supabase.config.js";
 
 export const getDashboardStatsService = async () => {
+  const supabase = getSupabaseClient();
   const [{ count: totalDonations }, { data: successData }, { data: failedData }, { data: pendingData }] = await Promise.all([
     supabase.from("donations").select("id", { count: "exact" }),
     supabase.from("donations").select("id", { count: "exact" }).eq("status", "SUCCESS"),
@@ -22,6 +23,7 @@ export const getDashboardStatsService = async () => {
 };
 
 export const getReportsService = async (params: { search?: string; page?: number; pageSize?: number; sortBy?: string; sortOrder?: string }) => {
+  const supabase = getSupabaseClient();
   const page = params.page ?? 1;
   const pageSize = params.pageSize ?? 20;
   const offset = (page - 1) * pageSize;

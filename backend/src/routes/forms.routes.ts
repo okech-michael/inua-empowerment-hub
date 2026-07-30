@@ -30,7 +30,7 @@ router.post("/join", async (req, res) => {
   const payload = validation.data;
 
   try {
-    await notifyTeam({
+    const notification = await notifyTeam({
       subject: `New ${payload.tab} application from ${payload.fullName}`,
       text: [
         `Type: ${payload.tab}`,
@@ -42,11 +42,20 @@ router.post("/join", async (req, res) => {
       ].join("\n"),
       html: `<p><strong>New ${payload.tab} application</strong></p><ul><li>Name: ${payload.fullName}</li><li>Email: ${payload.email}</li><li>Country: ${payload.country}</li><li>Date of birth: ${payload.dateOfBirth || "N/A"}</li><li>Goals: ${payload.goals || "N/A"}</li></ul>`,
     });
+
+    return res.status(200).json({
+      success: true,
+      message: notification.success ? "Application submitted successfully! We'll be in touch soon." : "Application received, but the notification email could not be sent.",
+      warning: notification.success ? undefined : notification.message,
+    });
   } catch (error) {
     console.error("Failed to send join application notification", error);
+    return res.status(500).json({
+      success: false,
+      message: "We could not process your application right now.",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
-
-  return res.status(200).json({ success: true, message: "Application submitted successfully! We'll be in touch soon." });
 });
 
 router.post("/contact", async (req, res) => {
@@ -58,7 +67,7 @@ router.post("/contact", async (req, res) => {
   const payload = validation.data;
 
   try {
-    await notifyTeam({
+    const notification = await notifyTeam({
       subject: `New contact message from ${payload.firstName} ${payload.lastName}`,
       text: [
         `Name: ${payload.firstName} ${payload.lastName}`,
@@ -68,20 +77,29 @@ router.post("/contact", async (req, res) => {
       ].join("\n"),
       html: `<p><strong>New contact message</strong></p><ul><li>Name: ${payload.firstName} ${payload.lastName}</li><li>Email: ${payload.email}</li><li>Organization: ${payload.organization || "N/A"}</li><li>Message: ${payload.message}</li></ul>`,
     });
+
+    return res.status(200).json({
+      success: true,
+      message: notification.success ? "Message sent successfully! We'll be in touch soon." : "Message received, but the notification email could not be sent.",
+      warning: notification.success ? undefined : notification.message,
+    });
   } catch (error) {
     console.error("Failed to send contact message notification", error);
+    return res.status(500).json({
+      success: false,
+      message: "We could not process your message right now.",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
-
-  return res.status(200).json({ success: true, message: "Message sent successfully! We'll be in touch soon." });
 });
 
 const notifyTeam = async ({ subject, text, html }: { subject: string; text: string; html: string }) => {
   const recipients = [process.env.JOIN_NOTIFICATION_EMAIL, process.env.CONTACT_NOTIFICATION_EMAIL, process.env.EMAIL_FROM].filter(Boolean);
   if (recipients.length === 0) {
-    return;
+    return { success: true, message: "Email notification skipped because no recipients were configured." };
   }
 
-  await sendEmail({
+  return sendEmail({
     to: recipients[0] as string,
     subject,
     text,

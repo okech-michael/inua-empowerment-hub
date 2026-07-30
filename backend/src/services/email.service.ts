@@ -1,11 +1,20 @@
 import sgMail from "@sendgrid/mail";
 
 const emailFrom = process.env.EMAIL_FROM ?? "no-reply@yourdomain.com";
-const sendgridApiKey = process.env.SENDGRID_API_KEY;
 
-if (sendgridApiKey) {
-  sgMail.setApiKey(sendgridApiKey);
-}
+let sendgridConfigured = false;
+
+const configureSendGrid = () => {
+  if (sendgridConfigured) {
+    return;
+  }
+
+  const sendgridApiKey = process.env.SENDGRID_API_KEY?.trim();
+  if (sendgridApiKey) {
+    sgMail.setApiKey(sendgridApiKey);
+    sendgridConfigured = true;
+  }
+};
 
 export const sendEmail = async ({
   to,
@@ -18,18 +27,31 @@ export const sendEmail = async ({
   html: string;
   text: string;
 }) => {
-  if (!sendgridApiKey) {
+  configureSendGrid();
+
+  if (!process.env.SENDGRID_API_KEY?.trim()) {
     console.warn("SENDGRID_API_KEY not configured, email not sent to:", to);
     return { success: true, message: "Email notification skipped (SendGrid not configured)" };
   }
 
-  return sgMail.send({
-    to,
-    from: emailFrom,
-    subject,
-    html,
-    text,
-  });
+  try {
+    await sgMail.send({
+      to,
+      from: emailFrom,
+      subject,
+      html,
+      text,
+    });
+
+    return { success: true, message: "Email sent successfully" };
+  } catch (error) {
+    console.error("Failed to send email", error);
+    return {
+      success: false,
+      message: "Email delivery failed",
+      error: error instanceof Error ? error.message : "Unknown email error",
+    };
+  }
 };
 
 export const sendDonationReceipt = async ({

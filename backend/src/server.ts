@@ -46,8 +46,12 @@ app.use("/api/health", healthCheckRouter);
 app.use(errorHandler);
 
 const port = Number(process.env.PORT ?? 4000);
-app.listen(port, () => {
-  logger.info(`Backend server is running on port ${port}`);
-});
+const shouldListen = process.env.NODE_ENV !== "test" && !process.env.VERCEL;
+
+if (shouldListen) {
+  app.listen(port, () => {
+    logger.info(`Backend server is running on port ${port}`);
+  });
+}
 
 export default app;

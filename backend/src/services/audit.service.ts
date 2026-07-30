@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase.config.js";
+import { getSupabaseClient } from "../config/supabase.config.js";
 
 export const createAuditLog = async (payload: {
   action: string;
@@ -6,6 +6,7 @@ export const createAuditLog = async (payload: {
   ip_address?: string | null;
   payload?: Record<string, unknown>;
 }) => {
+  const supabase = getSupabaseClient();
   const { data, error } = await supabase.from("audit_logs").insert([payload]).select().single();
   if (error) throw error;
   return data;
