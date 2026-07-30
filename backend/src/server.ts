@@ -15,6 +15,8 @@ config();
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(helmet());
 app.use(
   cors({
@@ -32,6 +34,18 @@ app.use(
     max: 100,
     standardHeaders: true,
     legacyHeaders: false,
+    keyGenerator: (req) => {
+      const forwarded = req.headers["x-forwarded-for"];
+      if (typeof forwarded === "string") {
+        return forwarded.split(",")[0].trim();
+      }
+
+      if (Array.isArray(forwarded)) {
+        return forwarded[0] ?? req.ip ?? "unknown";
+      }
+
+      return req.ip ?? "unknown";
+    },
   }),
 );
 

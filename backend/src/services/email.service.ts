@@ -1,4 +1,5 @@
 import sgMail from "@sendgrid/mail";
+import { withTimeout } from "../utils/with-timeout.js";
 
 const emailFrom = process.env.EMAIL_FROM ?? "no-reply@yourdomain.com";
 
@@ -35,13 +36,17 @@ export const sendEmail = async ({
   }
 
   try {
-    await sgMail.send({
-      to,
-      from: emailFrom,
-      subject,
-      html,
-      text,
-    });
+    await withTimeout(
+      sgMail.send({
+        to,
+        from: emailFrom,
+        subject,
+        html,
+        text,
+      }),
+      4000,
+      "SendGrid request timed out",
+    );
 
     return { success: true, message: "Email sent successfully" };
   } catch (error) {

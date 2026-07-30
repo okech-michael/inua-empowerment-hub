@@ -9,14 +9,17 @@ export const createDonation: RequestHandler = async (req, res) => {
   }
 
   try {
-    const donation = await createDonationRecord({
-      user_id: null,
-      ...validation.data,
-      checkout_request_id: null,
-      merchant_request_id: null,
-      status: "PENDING",
-      transaction_reference: null,
-    });
+    const donation = await Promise.race([
+      createDonationRecord({
+        user_id: null,
+        ...validation.data,
+        checkout_request_id: null,
+        merchant_request_id: null,
+        status: "PENDING",
+        transaction_reference: null,
+      }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Donation processing timed out")), 8000)),
+    ]);
 
     return res.status(201).json({ success: true, data: donation });
   } catch (error) {
